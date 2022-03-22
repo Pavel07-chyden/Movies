@@ -4,6 +4,9 @@ import './modal.scss';
 type ModalTypes = {
    active: boolean;
    id: string;
+   children?: React.ReactNode
+
+
 };
 
 export const ModalComp: React.FC<ModalTypes> = (props) => {
@@ -16,7 +19,7 @@ export const ModalComp: React.FC<ModalTypes> = (props) => {
 
    return (
       <div id={props.id} className={`modal ${active ? 'active' : ''}`}>
-         {/* {props.children} */}
+         {props.children}
       </div>
    );
 }
@@ -26,25 +29,29 @@ export const ModalComp: React.FC<ModalTypes> = (props) => {
 //    id: PropTypes.string
 // }
 
-export const ModalContent = (props: any) => {
+type ModalContentTypes = {
+   onClose: ()=>void;
+   children?: React.ReactNode;
+
+};
+
+export const ModalContent: React.FC<ModalContentTypes> = (props) => {
 
    const contentRef: React.MutableRefObject<any> = useRef(null);
 
    const closeModal = () => {
       contentRef.current.parentNode.classList.remove('active');
-      if (props.onClose) props.onClose();
+      if (props.onClose){ props.onClose()};
    }
 
    return (
       <div ref={contentRef} className="modal__content">
          {props.children}
          <div className="modal__content__close" onClick={closeModal}>
-            <i className="bx bx-x"></i>
+            <i className="bx bx-x">x</i>
          </div>
       </div>
    )
 }
 
-// ModalContent.propTypes = {
-//    onClose: PropTypes.func
-// }
+

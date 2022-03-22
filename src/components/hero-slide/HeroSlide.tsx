@@ -10,11 +10,11 @@ import tmdbApi, { category, movieType } from '../../api/tmdbApi';
 import apiConfig from '../../api/apiConfig';
 
 import './hero-slide.scss';
-// import { useHistory } from 'react-router';
+import { NavigateFunction, useNavigate } from 'react-router-dom';
+import { AxiosResponse } from 'axios';
 
 SwiperCore.use([EffectCoverflow, Pagination, Autoplay]);
 const HeroSlide = () => {
-
 
   const [movieItems, setMovieItems] = useState([]);
 
@@ -39,7 +39,7 @@ const HeroSlide = () => {
         modules={[Autoplay]}
         grabCursor={true}
         spaceBetween={0}
-        onSlideChange={() => console.log('!!')}
+        // onSlideChange={() => console.log('!!')}
 
         slidesPerView={1}
       // autoplay={{delay: 3000}}
@@ -59,29 +59,32 @@ const HeroSlide = () => {
         movieItems.map((item, i) => <TrailerModal key={i} item={item} />)
       }
     </div>
-    
+
   );
 }
 
 type HeroSlideItemProps = {
   item: any
   className: string
+  
 }
 const HeroSlideItem: React.FC<HeroSlideItemProps> = ({ item, className }) => {
 
-  // let hisrory = useHistory();
+  let navigate: NavigateFunction = useNavigate();
 
 
   const background = apiConfig.originalImage(item.backdrop_path ? item.backdrop_path : item.poster_path);
 
-  const setModalActive = async () => {
-    const modal: any = document.querySelector(`#modal_${item.id}`);
-
+  const setModalActive: React.MouseEventHandler<HTMLButtonElement> = async () => {
+    const modal:any = document.querySelector(`#modal_${item.id}`);
+    console.log(modal)
     const videos: any = await tmdbApi.getVideos(category.movie, item.id);
+    console.log(videos)
 
     if (videos.results.length > 0) {
       const videSrc = 'https://www.youtube.com/embed/' + videos.results[0].key;
       modal.querySelector('.modal__content > iframe').setAttribute('src', videSrc);
+      console.log(videSrc)
     } else {
       modal.querySelector('.modal__content').innerHTML = 'No trailer';
     }
@@ -99,8 +102,8 @@ const HeroSlideItem: React.FC<HeroSlideItemProps> = ({ item, className }) => {
           <h2 className="title">{item.title}</h2>
           <div className="overview">{item.overview}</div>
           <div className="btns">
-            <Button onClick={() => { }}
-            // onClick={() => hisrory.push('/movie/' + item.id)}
+            <Button
+              onClick={() => navigate('/movie/' + item.id)}
             >
               Watch now
             </Button>
