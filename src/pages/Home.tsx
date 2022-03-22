@@ -1,14 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import HeroSlide from '../components/hero-slide/HeroSlide';
-
-import { category, movieType, tvType } from '../api/tmdbApi';
 import { OutlineButton } from '../components/button/Button';
+import HeroSlide from '../components/hero-slide/HeroSlide';
 import MovieList from '../components/movie-list/MovieList';
 
+import { category, movieType, tvType } from '../api/tmdbApi';
 
-const Home: React.FC<any> = () => {
+const Home = () => {
     return (
         <>
             <HeroSlide/>

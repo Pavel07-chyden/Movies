@@ -28,7 +28,6 @@ export const tvType: any = {
 const tmdbApi = {
    getMoviesList: (type: string, params: any):Promise<AxiosResponse<any, any>> => {
       const url = 'movie/' + movieType[type];
-      console.log('url',url)
       return axiosClient.get(url, params);
    },
    getTvList: (type: string, params: any):Promise<AxiosResponse<any, any>> => {
@@ -47,11 +46,11 @@ const tmdbApi = {
       const url = category[cate] + '/' + id;
       return axiosClient.get(url, params);
    },
-   credits: (cate: string, id: number):Promise<AxiosResponse<any, any>> => {
+   credits: (cate: string, id: any):Promise<AxiosResponse<any, any>> => {
       const url = category[cate] + '/' + id + '/credits';
       return axiosClient.get(url, { params: {} });
    },
-   similar: (cate: string, id: number):Promise<AxiosResponse<any, any>> => {
+   similar: (cate: string, id: any):Promise<AxiosResponse<any, any>> => {
       const url = category[cate] + '/' + id + '/similar';
       return axiosClient.get(url, { params: {} });
    },

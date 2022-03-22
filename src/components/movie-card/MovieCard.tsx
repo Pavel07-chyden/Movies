@@ -4,22 +4,23 @@ import { category } from '../../api/tmdbApi';
 import apiConfig from '../../api/apiConfig';
 import { Link } from 'react-router-dom';
 
-type MovieCardType ={
+
+import "swiper/swiper-bundle.min.css";
+import "swiper/swiper.min.css";
+
+type MovieCardType = {
     item: any
-    category:any
+    category: any
 }
 
 const MovieCard: React.FC<MovieCardType> = props => {
 
-    const item  = props.item;
-
+    const item = props.item;
     const link = '/' + category[props.category] + '/' + item.id;
-
     const bg = apiConfig.w500Image(item.poster_path || item.backdrop_path);
-
-    return (
+        return (
         <Link to={link}>
-            <div className="movie-card" style={{backgroundImage: `url(${bg})`}}>
+            <div className="movie-card" style={{ backgroundImage: `url(${bg})` }} >
                 <Button>
                     <i className="bx bx-play"></i>
                 </Button>

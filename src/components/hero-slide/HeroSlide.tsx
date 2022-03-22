@@ -11,7 +11,6 @@ import apiConfig from '../../api/apiConfig';
 
 import './hero-slide.scss';
 import { NavigateFunction, useNavigate } from 'react-router-dom';
-import { AxiosResponse } from 'axios';
 
 SwiperCore.use([EffectCoverflow, Pagination, Autoplay]);
 const HeroSlide = () => {
@@ -24,14 +23,12 @@ const HeroSlide = () => {
       try {
         const response: any = await tmdbApi.getMoviesList(movieType.popular, { params });
         setMovieItems(response.results.slice(1, 4));
-        console.log(response);
       } catch {
         console.log('error');
       }
     }
     getMovies();
   }, []);
-  console.log('movieItems ', movieItems)
   return (
     <div className="hero-slide">
       <Swiper
@@ -39,7 +36,6 @@ const HeroSlide = () => {
         modules={[Autoplay]}
         grabCursor={true}
         spaceBetween={0}
-        // onSlideChange={() => console.log('!!')}
 
         slidesPerView={1}
       // autoplay={{delay: 3000}}
@@ -66,7 +62,7 @@ const HeroSlide = () => {
 type HeroSlideItemProps = {
   item: any
   className: string
-  
+
 }
 const HeroSlideItem: React.FC<HeroSlideItemProps> = ({ item, className }) => {
 
@@ -76,15 +72,12 @@ const HeroSlideItem: React.FC<HeroSlideItemProps> = ({ item, className }) => {
   const background = apiConfig.originalImage(item.backdrop_path ? item.backdrop_path : item.poster_path);
 
   const setModalActive: React.MouseEventHandler<HTMLButtonElement> = async () => {
-    const modal:any = document.querySelector(`#modal_${item.id}`);
-    console.log(modal)
+    const modal: any = document.querySelector(`#modal_${item.id}`);
     const videos: any = await tmdbApi.getVideos(category.movie, item.id);
-    console.log(videos)
 
     if (videos.results.length > 0) {
       const videSrc = 'https://www.youtube.com/embed/' + videos.results[0].key;
       modal.querySelector('.modal__content > iframe').setAttribute('src', videSrc);
-      console.log(videSrc)
     } else {
       modal.querySelector('.modal__content').innerHTML = 'No trailer';
     }
