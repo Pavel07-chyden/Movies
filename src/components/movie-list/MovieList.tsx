@@ -5,7 +5,7 @@ import "swiper/swiper-bundle.min.css";
 import "swiper/swiper.min.css";
 
 import { SwiperSlide, Swiper } from 'swiper/react';
-
+///sffddffdfd
 
 import tmdbApi, { category } from '../../api/tmdbApi';
 
