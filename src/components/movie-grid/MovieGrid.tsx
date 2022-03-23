@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback, FC, SetStateAction } from 'react';
+import React, { useState, useEffect, useCallback, FC} from 'react';
 import { useNavigate, useParams } from 'react-router';
 
 import './movie-grid.scss';
@@ -77,7 +77,7 @@ const MovieGrid: FC<MovieGridType> = props => {
          </div>
          <div className="movie-grid">
             {
-               items.map((item: any, i: number) => <MovieCard category={props.category} item={item} key={i} />)
+               items.map((item: any, i: number) => <MovieCard category={props.category} item={item} key={i}  />)
             }
          </div>
          {

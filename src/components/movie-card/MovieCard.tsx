@@ -3,7 +3,7 @@ import Button from '../button/Button';
 import { category } from '../../api/tmdbApi';
 import apiConfig from '../../api/apiConfig';
 import { Link } from 'react-router-dom';
-
+import './movi-card.scss';
 
 import "swiper/swiper-bundle.min.css";
 import "swiper/swiper.min.css";
@@ -18,7 +18,7 @@ const MovieCard: React.FC<MovieCardType> = props => {
     const item = props.item;
     const link = '/' + category[props.category] + '/' + item.id;
     const bg = apiConfig.w500Image(item.poster_path || item.backdrop_path);
-        return (
+    return (
         <Link to={link}>
             <div className="movie-card" style={{ backgroundImage: `url(${bg})` }} >
                 <Button>

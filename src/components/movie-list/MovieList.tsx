@@ -5,11 +5,13 @@ import "swiper/swiper-bundle.min.css";
 import "swiper/swiper.min.css";
 
 import { SwiperSlide, Swiper } from 'swiper/react';
-///sffddffdfd
+import { Link } from 'react-router-dom';
+
 
 import tmdbApi, { category } from '../../api/tmdbApi';
 
 import MovieCard from '../movie-card/MovieCard';
+import '../movie-card/movi-card.scss';
 
 type MovieListType = {
   type: string
