@@ -13,6 +13,7 @@ type MovieCardType = {
     category: any
 }
 
+
 const MovieCard: React.FC<MovieCardType> = props => {
 
     const item = props.item;
@@ -22,7 +23,9 @@ const MovieCard: React.FC<MovieCardType> = props => {
         <Link to={link}>
             <div className="movie-card" style={{ backgroundImage: `url(${bg})` }} >
                 <Button>
-                    <i className="bx bx-play"></i>
+                    <i className="bx bx-play" >
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"  stroke-linecap="round" ><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+                    </i>
                 </Button>
             </div>
             <h3>{item.title || item.name}</h3>
