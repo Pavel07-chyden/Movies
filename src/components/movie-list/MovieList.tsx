@@ -5,7 +5,6 @@ import "swiper/swiper-bundle.min.css";
 import "swiper/swiper.min.css";
 
 import { SwiperSlide, Swiper } from 'swiper/react';
-import { Link } from 'react-router-dom';
 
 
 import tmdbApi, { category } from '../../api/tmdbApi';
