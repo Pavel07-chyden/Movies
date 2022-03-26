@@ -4,7 +4,7 @@ import Home from '../pages/Home';
 import Catalog from '../pages/Catalog';
 import Detail from '../pages/detail/Detail';
 
-
+// Router 6 
 const RoutesA = () => {
    return (
       <Routes>
